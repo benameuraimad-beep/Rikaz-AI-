@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 20 14% 8%;
+    --foreground: 45 30% 95%;
+
+    --card: 20 12% 12%;
+    --card-foreground: 45 30% 95%;
+
+    --popover: 20 12% 10%;
+    --popover-foreground: 45 30% 95%;
+
+    --primary: 38 92% 50%;
+    --primary-foreground: 20 14% 8%;
+
+    --secondary: 25 60% 25%;
+    --secondary-foreground: 45 30% 95%;
+
+    --muted: 20 12% 18%;
+    --muted-foreground: 45 15% 60%;
+
+    --accent: 30 80% 45%;
+    --accent-foreground: 45 30% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 30% 95%;
+
+    --border: 30 20% 20%;
+    --input: 20 12% 15%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom design tokens */
+    --gold: 38 92% 50%;
+    --gold-light: 45 100% 70%;
+    --gold-dark: 30 80% 35%;
+    --copper: 25 70% 45%;
+    --bronze: 30 50% 30%;
+    
+    --gradient-gold: linear-gradient(135deg, hsl(38, 92%, 50%) 0%, hsl(30, 80%, 45%) 50%, hsl(25, 70%, 40%) 100%);
+    --gradient-radial: radial-gradient(circle at center, hsl(38, 92%, 50%, 0.15) 0%, transparent 70%);
+    --gradient-card: linear-gradient(180deg, hsl(20, 12%, 14%) 0%, hsl(20, 12%, 10%) 100%);
+    
+    --shadow-gold: 0 4px 30px hsl(38, 92%, 50%, 0.2);
+    --shadow-card: 0 8px 32px hsl(0, 0%, 0%, 0.4);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    direction: rtl;
+  }
+
+  body {
+    @apply bg-background text-foreground font-cairo antialiased;
+    font-feature-settings: "ss01", "ss02";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(45, 100%, 70%) 0%, hsl(38, 92%, 50%) 50%, hsl(30, 80%, 45%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .bg-gradient-radial {
+    background: var(--gradient-radial);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-gold {
+    animation: pulseGold 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-scan {
+    animation: scan 2s ease-in-out infinite;
+  }
+
+  .glass-card {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .geometric-pattern {
+    background-image: 
+      linear-gradient(30deg, hsl(var(--primary) / 0.03) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.03) 87.5%),
+      linear-gradient(150deg, hsl(var(--primary) / 0.03) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.03) 87.5%),
+      linear-gradient(30deg, hsl(var(--primary) / 0.03) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.03) 87.5%),
+      linear-gradient(150deg, hsl(var(--primary) / 0.03) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.03) 87.5%);
+    background-size: 80px 140px;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulseGold {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(38, 92%, 50%, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(38, 92%, 50%, 0.5);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,4 @@
+project_id = "jktqfshfikpcwymhzoxg"
+
+[functions.geo-chat]
+verify_jwt = false
